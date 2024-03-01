@@ -1,0 +1,51 @@
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `bonus` (
+  `empno` int(11) NOT NULL,
+  `bonus` int(11) DEFAULT NULL,
+  PRIMARY KEY (`empno`),
+  CONSTRAINT `fk_empno` FOREIGN KEY (`empno`) REFERENCES `emp` (`empno`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+INSERT INTO `bonus` VALUES (7369,100);
+INSERT INTO `bonus` VALUES (7566,400);
+INSERT INTO `bonus` VALUES (7698,600);
+INSERT INTO `bonus` VALUES (7782,700);
+INSERT INTO `bonus` VALUES (7788,800);
+INSERT INTO `bonus` VALUES (7839,900);
+INSERT INTO `bonus` VALUES (7844,1000);
+INSERT INTO `bonus` VALUES (7876,1100);
+INSERT INTO `bonus` VALUES (7900,1200);
+INSERT INTO `bonus` VALUES (7902,1300);
+INSERT INTO `bonus` VALUES (7934,1400);
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `dept` (
+  `deptno` int(11) NOT NULL,
+  `dname` text DEFAULT NULL,
+  `loc` text DEFAULT NULL,
+  PRIMARY KEY (`deptno`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+INSERT INTO `dept` VALUES (10,'ACCOUNTING','NEW YORK');
+INSERT INTO `dept` VALUES (20,'RESEARCH','DALLAS');
+INSERT INTO `dept` VALUES (30,'SALES','CHICAGO');
+INSERT INTO `dept` VALUES (40,'OPERATIONS','BOSTON');
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `emp` (
+  `empno` int(11) NOT NULL,
+  `ename` text DEFAULT NULL,
+  `job` text DEFAULT NULL,
+  `mgr` int(11) DEFAULT NULL,
+  `hiredate` date DEFAULT NULL,
+  `sal` int(11) DEFAULT NULL,
+  `comm` int(11) DEFAULT NULL,
+  `deptno` int(11) DEFAULT NULL,
+  PRIMARY KEY (`empno`),
+  KEY `fk_mgr` (`mgr`),
+  KEY `fk_deptno` (`deptno`),
+  CONSTRAINT `fk_deptno` FOREIGN KEY (`deptno`) REFERENCES `dept` (`deptno`),
+  CONSTRAINT `fk_mgr` FOREIGN KEY (`mgr`) REFERENCES `emp` (`empno`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
